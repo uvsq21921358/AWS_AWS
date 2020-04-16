@@ -1,0 +1,214 @@
+@charset "UTF-8";
+
+.clear{
+    clear: both;
+}
+body {
+  background-color: #333;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 10px;
+}
+
+path {
+  fill: transparent;
+}
+
+text {
+  fill: #FF9800;
+}
+body{
+    font-family: Verdana;
+    background-color: #ffffff;
+    
+}
+h1{
+    margin-top: 30px;
+    text-align: center;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 0 #cccccc,
+         0 2px 0 #c9c9c9,
+         0 3px 0 #bbbbbb,
+         0 4px 0 #b9b9b9,
+         0 5px 0 #aaaaaa,
+         0 6px 1px rgba(0, 0, 0, 0.1),
+         0 0 5px rgba(0, 0, 0, 0.1),
+         0 1px 3px rgba(0, 0, 0, 0.3),
+         0 3px 5px rgba(0, 0, 0, 0.2),
+         0 5px 10px rgba(0, 0, 0, 0.25),
+         0 10px 10px rgba(0, 0, 0, 0.2),
+         0 20px 20px rgba(0, 0, 0, 0.15);
+}
+h5{
+    margin-top: 10px;
+    text-align: center;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 0 #cccccc,
+         0 2px 0 #c9c9c9,
+         0 3px 0 #bbbbbb,
+         0 4px 0 #b9b9b9,
+         0 5px 0 #aaaaaa,
+         0 6px 1px rgba(0, 0, 0, 0.1),
+         0 0 5px rgba(0, 0, 0, 0.1),
+         0 1px 3px rgba(0, 0, 0, 0.3),
+         0 3px 5px rgba(0, 0, 0, 0.2),
+         0 5px 10px rgba(0, 0, 0, 0.25),
+         0 10px 10px rgba(0, 0, 0, 0.2),
+         0 10px 10px rgba(0, 0, 0, 0.15);
+}
+aside{
+    padding: 15px;
+    
+}
+
+canvas{
+  /*width: 870px;
+   height: 408px;*/
+   
+    width: 700px;
+    height: 350px;
+    margin: 10px auto;
+    margin-left: 225;
+    overflow: hidden;
+    border-width: px;
+    border-style: solid;
+    border-color: #dedede #bababa #aaa #bababa;
+    -moz-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+    -webkit-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+    box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;    
+    background-color: #f6f6f6;
+    position: relative;
+}
+#error{
+     margin-top: 10px;
+    text-align: center;
+  color: #ee1010;
+  text-align: center;
+  text-shadow: 0 1px 0 #cccccc,
+         0 2px 0 #c9c9c9,
+         0 3px 0 #bbbbbb,
+         0 4px 0 #b9b9b9,
+         0 5px 0 #aaaaaa,
+         0 6px 1px rgba(0, 0, 0, 0.1),
+         0 0 5px rgba(0, 0, 0, 0.1),
+         0 1px 3px rgba(0, 0, 0, 0.3),
+         0 3px 5px rgba(0, 0, 0, 0.2),
+         0 5px 10px rgba(0, 0, 0, 0.25),
+         0 10px 10px rgba(0, 0, 0, 0.2),
+         0 10px 10px rgba(0, 0, 0, 0.15);
+}
+main {
+  /*width: 870px;
+   height: 408px;*/
+    width: 400px;
+    padding: 20px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #dedede #bababa #aaa #bababa;
+    -moz-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+    -webkit-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+    box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;    
+    background-color: #f6f6f6;
+    position: relative;
+}
+#champs_ecriture{
+    width: 250px;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    padding: 5px;
+    text-align: center;
+    border: 2px solid #808080;
+    cursor: pointer;
+}
+#champs_ecriture:hover{
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: #808080;
+    border: 2px solid #808080;
+}
+#champs_ecriture:focus{
+     background-color: #ffffff;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: #808080;
+    border: 2px solid #808080;
+     outline: none;
+
+}
+
+#btn_start, #btn_start:link, #btn_start:visited {
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #808080;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    color: #ffffff;
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    
+}
+#btn_start:hover{
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: #808080;
+    border: 2px solid #808080;
+    height: 40px;
+     outline: none;
+}
+#btn_start:active{
+    background-color: #808080;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    color: #808080;
+    color: #ffffff;
+    outline: none;
+
+}
+#barre {
+height: 50px;
+width: 100%;
+}
+#pff{
+height: 50px;
+width: 100%;
+}
+ 
+#barre1,#barre2
+ {
+display:inline;
+float: left;
+width:50%;
+text-align:center;
+}
+.tab
+{
+    position:absolute;
+    top:20%;
+    left:30%;
+    bottom: 20%;
+    color: black;
+    font-family: 'Luckiest Guy', cursive;
+    margin-bottom: 200px
+    
+}
+table{
+  caption-side: bottom;
+}
+th, td{
+  border: 1px solid black;
+  padding: 10px;
+}

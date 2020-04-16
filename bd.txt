@@ -1,0 +1,8 @@
+
+CREATE TABLE joueur (psudo varchar(20) PRIMARY KEY,nom varchar(40),prenom varchar(40),
+email varchar(60),mot_pass varchar(400),NbrPartieJouer int,NbrPartiePerdu int,NbrPartieGagner int );
+CREATE TABLE Partie (id_partie int AUTO_INCREMENT PRIMARY KEY);
+
+CREATE TABLE participe (nom_gagnant varchar(20),id_partie int,psudo_joueur_1 varchar(20),psudo_joueur_2 varchar(20),PRIMARY KEY(id_partie,psudo_joueur_1,psudo_joueur_2),
+FOREIGN KEY(psudo_joueur_1) REFERENCES joueur (psudo),FOREIGN KEY(psudo_joueur_2) REFERENCES joueur
+ (psudo),FOREIGN KEY(id_partie) REFERENCES partie (id_partie);

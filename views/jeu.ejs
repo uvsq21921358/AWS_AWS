@@ -1,0 +1,137 @@
+<html>
+<body>
+	<link href="css/style.css" type="text/css" rel="stylesheet"/>
+<h1>Game of "Tron"</h1>
+
+<canvas id="Canvas" width="1000" height="500" style="border:5px solid #bababa position:initial;">
+</canvas>
+
+<script>
+//les variables
+// canvas ==> la toille
+var canvas = document.getElementById("Canvas");
+var CONTEXT = canvas.getContext("2d");
+// 
+//var canvas_rectangle = canvas.getBoundingClientRect();
+// taille des sellule points bleau==>  et rouge 
+var taille_cellule = 5;
+//toille commplet =5
+var nombre_case_horizontal = canvas.width / taille_cellule;
+var nombre_case_vertical = canvas.height / taille_cellule;
+var x0 =0;
+var y0 = 0;
+// grille occuper 
+var grille = null;
+var case_occuper = 1;
+//position de depart
+var position_x = nombre_case_horizontal/2;
+var position_y = nombre_case_vertical;
+
+var direction_x = 0; // positive for right
+//vers le haut
+var direction_y = -1; // positive for down
+var vivant = true;
+
+// CEATION DE LA GRILLE VIDE
+var CEATION_GRILLE = function( nombre_lignes, nombre_colones ) {
+	var TABLEAU = [];
+	for ( var i = 0; i < nombre_colones; i++ ) {
+		TABLEAU.push([]); 
+		for ( var r = 0; r < nombre_lignes; r++ ) {
+			TABLEAU[i].push(0);
+		}
+	}
+	return TABLEAU;
+}
+
+function keyDownHandler(e) {
+	if (e.keyCode === 38) { // up arrow
+		direction_x = 0;
+		direction_y = -1;
+	}
+	else if (e.keyCode === 40) { // down arrow
+		direction_x = 0;
+		direction_y = 1;
+	}
+	else if (e.keyCode === 37) { // left arrow
+		direction_y = 0;
+		direction_x = -1;
+	}
+	else if (e.keyCode === 39) { // right arrow
+		direction_y = 0;
+		direction_x = 1;
+	}
+}
+
+// disine le contenu de la grille
+var redraw = function() {
+
+	
+
+	//CONTEXT.fillStyle = "#0e0b4d";
+	//CONTEXT.fillRect(0,0,canvas.width,canvas.height);
+
+
+	var grd = CONTEXT.createRadialGradient(position_x*5+2, position_y*5, 5, position_x*5+2, position_y*5, 20);
+	grd.addColorStop(0, "#f9ff9e");
+	grd.addColorStop(1, "#0e0b4d");
+
+	CONTEXT.fillStyle = grd;
+	CONTEXT.fillRect(0,0,canvas.width,canvas.height);
+
+
+	CONTEXT.fillStyle = "#949c22";
+
+
+	for ( var i = 0; i < nombre_case_horizontal; ++i ) {
+		for ( var j = 0; j < nombre_case_vertical; ++j ) {
+
+			if ( grille[i][j] === case_occuper )
+					CONTEXT.fillRect( x0+i*taille_cellule, y0+j*taille_cellule, taille_cellule, taille_cellule );
+		}
+	}
+
+
+	CONTEXT.fillStyle = vivant ? grd : "#fbff00";
+	CONTEXT.fillRect( x0+position_x*taille_cellule, y0+position_y*taille_cellule, taille_cellule, taille_cellule );
+
+
+
+	
+
+}
+
+var advance = function() {
+//on test les collisions
+	if ( vivant ) {
+		var new1_x = position_x + direction_x;
+		var new1_y = position_y + direction_y;
+			if 	(
+			 new1_x < 0 //collision avec l'axe x=0
+			|| new1_y < 0 //collision avec l'axe y=0
+		 	|| new1_x >= nombre_case_horizontal //collision droite
+		 	|| new1_y >= nombre_case_vertical //collision bas
+		 	||grille[new1_x][new1_y] === case_occuper
+		 	
+		)
+			 vivant = false;
+		else {
+			position_x = new1_x; // x avance 
+			position_y = new1_y; // y avance
+			grille[new1_x][new1_y] = case_occuper; //on met la case occuper
+
+		}
+		redraw();
+	}
+}
+
+grille = CEATION_GRILLE(nombre_case_vertical,nombre_case_horizontal );
+grille[position_x][position_y] = case_occuper; 
+document.onkeydown = keyDownHandler;
+setInterval( function() { advance(); }, 20  );
+
+</script>
+
+</body>
+</html>
+
