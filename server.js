@@ -21,14 +21,17 @@ con.connect(function(err) {if (err) {throw err  }});
 server.listen(1501,function(){
   console.log('Ecoute sur le port 1501');
 });
+
+
 io.sockets.on('connection', function (socket,req) {
-    console.log('CONNEXION SOCKET !!!');
+
+    console.log('CONNEXION SOCKET REUSSIE!!!');
 
     socket.emit('message', 'Vous êtes bien connecté !');
-// code à lancer quand un client se connecte
+    //code à lancer quand un client se connecte
     //console.log('Un client se connecte, socket.id = ' + socket.id);
 
-    socket.broadcast.emit('message', 'Un autre client vient de se connecter ! ' + socket.id);
+    socket.broadcast.emit('message', 'Un autre client vient de se connecter ! ');
     
     socket.on('message', function(message){
       console.log('message recu : '+message);
