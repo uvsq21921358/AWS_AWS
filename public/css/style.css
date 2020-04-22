@@ -3,19 +3,6 @@
 .clear{
     clear: both;
 }
-body {
-  background-color: #333;
-  font-family: 'Luckiest Guy', cursive;
-  font-size: 10px;
-}
-
-path {
-  fill: transparent;
-}
-
-text {
-  fill: #FF9800;
-}
 body{
     font-family: Verdana;
     background-color: #ffffff;
@@ -182,10 +169,6 @@ main {
 height: 50px;
 width: 100%;
 }
-#pff{
-height: 50px;
-width: 100%;
-}
  
 #barre1,#barre2
  {
@@ -193,22 +176,4 @@ display:inline;
 float: left;
 width:50%;
 text-align:center;
-}
-.tab
-{
-    position:absolute;
-    top:20%;
-    left:30%;
-    bottom: 20%;
-    color: black;
-    font-family: 'Luckiest Guy', cursive;
-    margin-bottom: 200px
-    
-}
-table{
-  caption-side: bottom;
-}
-th, td{
-  border: 1px solid black;
-  padding: 10px;
 }
