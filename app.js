@@ -12,19 +12,22 @@ var session = require('express-session');
 var  bodyParser = require('body-parser');
 var mysql = require('mysql');
 const bcrypt = require('bcrypt')
-app.get('/css/style.css', function(req, res) {
+/*app.get('/css/style.css', function(req, res) {
     res.sendfile(__dirname + '/css/style.css')
 })
 app.get('/css/reset.css', function(req, res) {
     res.sendfile(__dirname + '/css/style.css')
 })
-app.get('/js/jquery.js', function(req, res) {
+/*app.get('/js/jquery.js', function(req, res) {
     res.sendfile(__dirname + '/js/jquery.js')
 })
 app.get('/js/myscript.js', function(req, res) {
     res.sendfile(__dirname + '/js/myscript.js')
-})
-
+})*/
+app.use( '/js/jquery.js',express.static(__dirname + '/js/jquery.js'));
+app.use( '/css/style.css',express.static(__dirname + '/css/style.css'));
+app.use('/js/myscript.js', express.static(__dirname + '/js/myscript.js'));
+app.use( '/css/reset.css',express.static(__dirname + '/css/reset.css'));
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -105,7 +108,7 @@ app.post('/connecter', function  (req, res) {
                         console.log(results1)
                         req.session.error=results1
                       })
-                    res.redirect('/liste'); } 
+                    res.redirect('/jeu'); } 
                   else {
                     req.session.error="mot de pass erroner " 
                     res.redirect('/connecter') }
