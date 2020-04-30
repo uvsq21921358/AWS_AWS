@@ -1,31 +1,55 @@
 <!DOCTYPE html>
 <html>
   <head>     
-     <link href="css/style.css" type="text/css" rel="stylesheet"/>
+     <link href="../css/style.css" type="text/css" rel="stylesheet"/>
+
+     <style type="text/css">
+    body {
+      background-image: url(TRON.png);
+      background-color: black;
+      background-repeat: no-repeat;
+      background-size: 1500px;
+      background-position: 100% 70px;
+      /* background-repeat: space; */
+    }
+
+  </style>
 
 
   </head>
   <body>
-    <h1> Connecter </h1>
-    <main>
-          <div id="error">
+    <h1 class="title"> Connecter </h1>
+    
+          <div id="error" class="signinheader">
           <% if (locals.error){ %>
            <p><%= error %></p>
           <% } %>
           </div>
+
+
+
       <aside id="start_menu">
-        
-        <form name="general"  method="POST" >
-         <input type="text" placeholder="Votre psudo" name="psudo" id="champs_ecriture" placeholder="Entrez votre nom" />
-        <input type="password" id="champs_ecriture" name="mot_pass" size="60" maxlength="60" placeholder="Entrez Votre mot de pass"/>
-     
+              
+              <form name="general"  method="POST" >
+                  <div class="inputs">  
+                          <input type="text" placeholder="Votre psudo" name="psudo" />
+                    </div>
 
-        <input type="submit"  value="Connecter" id="btn_start"/>
+                    <div class="inputs">
+                          <input type="password" name="mot_pass" size="60" maxlength="60" placeholder="Votre mot de pass"/>
+                    </div>
 
-        </form>
+
+                    <div class="inputs">
+                          <input type="submit"  value="Connecter" class="btn"/>
+                    </div>
+
+
+
+              </form>
          
       </aside>
-    </main>
+    
 
   </body>
 </html>

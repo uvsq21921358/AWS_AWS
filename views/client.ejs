@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>io = io.connect()
+$(document).ready(function(){
+   
+    var canvas = $("#canvas")[0],
+        context = canvas.getContext("2d"),
+        cw = 5, // la taille de cellule de tron
+        direction, //la direction du tron (left|right|up|down)
+        playerName,//nom de joueur
+        playerColor;//couleur de joueur
+    var tab_joueur = [];
+    io.on('Direction', function(data){
+        playerName = data;
+        if($(window).DeviceMotionEvent == undefined) {
+               $(document).keydown(function (e) {
+            var key = e.keyCode;//определение текущего кода кнопки
+            var ObjectData = new Object();
+            ObjectData.playerName = playerName;
+            if (key == "37" && direction != "right") {
+                direction = "left";
+            }
+            else if (key == "38" && direction != "40") {
+                direction = "38";
+            }
+            else if (key == "39" && direction != "left") {
+                direction = "right";
+            }
+            else if (key == "40" && direction != "38") {
+                direction = "40";
+            }
+             ObjectData.direction = direction;
+             io.emit('changer_direction', ObjectData);
+        });   
+        }
+    io.on('lancer_le_jeu', function(){
+     
+        $(".joueur").fadeIn(500);
+        context.clearRect(0, 0, $("#canvas").width(), $("#canvas").height())
+    });
+
+    });
+    io.on('update', function(data){
+        //construire canvas avec donnée
+        // les donné serons en JSON et seron un ensemble de coordonnée + nom
+        var tabJoueur = JSON.parse(data);
+        for(var i = 0; i<tabJoueur.length; i++) {
+            var traceAdded = false;
+         var newJData = tabJoueur[i];
+            for(var j = 0; j<tab_joueur.length; j++) {
+                if (newJData.nom===tab_joueur[j].nom) {
+                    tab_joueur[j].trace = tab_joueur[j].trace.concat(newJData.trace);
+                    traceAdded = true;
+                }
+            }
+            if (!traceAdded) {
+              if(newJData.nom === playerName) {
+                newJData.col = "#fc776d";
+
+              } else {
+                newJData.col = "#6affea";
+                    }
+                       var html ="<li style='color:"+newJData.col+"' id='"+newJData.nom+"'> "+newJData.nom+"</li>";
+                    $(".joueur").prepend(html);
+                tab_joueur.push(newJData);
+            }
+
+        }
+
+              for(var i = 0; i<tab_joueur.length; i++) {
+            for(var j = 0; j<tab_joueur[i].trace.length; j++) {
+                context.fillStyle = tab_joueur[i].col;
+                context.fillRect(tab_joueur[i].trace[j].x*cw, tab_joueur[i].trace[j].y*cw, cw, cw);
+            }
+        }
+    });
+
+    io.on('perdre', function(data){
+      for(var i = 0; i<data.length; i++) {
+            $("#"+data[i]).css({'text-decoration':'line-through'});
+            if(data[i] === playerName){
+                $(document).unbind("keydown");
+                  $("#perdu").fadeIn();
+                  $("#canvas").fadeOut();
+            }
+        }
+        });
+
+    io.on('gagner', function(data){
+        if(data === playerName){
+            $(document).unbind("keydown");
+              $("#gagnee").fadeIn();
+                $("#canvas").fadeOut();
+        }
+    });
+
+    
+
+    $("#btn").click(function(e){
+        $("#historytable").fadeOut();
+        io.emit('ready');
+        e.preventDefault();
+        $("aside").fadeOut(300,function(){
+            $("main").animate(
+              {
+                width: "1170px",
+                height: "108px"
+              },
+            300,function(){
+                    $("#block_jeu").fadeIn(300);
+            });
+        });
+    });
+});
+
+</script>
+
+      
+     <link href="css/style.css" type="text/css" rel="stylesheet"/>
+
+  </head>
+  <body>
+    <h1 style="text-decoration: underline ; text-decoration-style:  double;">Tron</h1>
+    <div id="historytable" >
+        <table class="tab">
+                <tr>
+                        <th>Joueur</th> 
+                        <th>Nombre de partie jouer</th> 
+                        <th>Nombre de perdue </th> 
+                        <th>Nombre de gagnée </th>   
+                </tr>
+
+
+                        <td><%= psudo %></th> 
+                        <td><%= NbrPartieJouer %></td> 
+                        <td><%= NbrPartiePerdu %> </td> 
+                        <td><%= NbrPartieGagner %></td>
+                                  
+                 </tr>
+            </table>
+    
+    </div>
+        <aside class="btn_menu">
+                 <a  href="/quiter"  onmouseover="this.style.color='#ffea00';" onmouseout="this.style.color='';">quiter</a>
+                <div class="inputs">
+                    <input type="submit"  href="#" value="joueur" id="btn" class="btn"/>       
+                   
+                </div>
+        </aside>
+    <main>
+              <section id="block_jeu">
+                        <section id="info_joueur">
+
+
+                            <div class= "joueur_online">
+                                <p style="color: #6d6bbf">Online Players : </p>
+                            </div>
+
+
+                            <div class= "joueur_online">
+                              <ul class="joueur"></ul> 
+                            </div>
+                        </section> 
+
+
+
+                <canvas id="canvas" width="1000" height="500"></canvas>
+                
+                <div class="fin_partie">
+
+                    <div id="perdu">
+                        <p >Vous avez perdu :( </p>
+                        <a href="/connecter" onmouseover="this.style.color='#FF0000';" onmouseout="this.style.color='';">Restart Game</a>
+                         <a  href="/quiter"  onmouseover="this.style.color='#ffea00';" onmouseout="this.style.color='';">quiter</a>
+                
+                    </div>
+
+
+                    <div id="gagnee">
+                        <p >Vous avez gagné :) </p>
+                        <a href="/connecter" onmouseover="this.style.color='#ffea00';" onmouseout="this.style.color='';">Restart Game</a>
+                         <a  href="/quiter"  onmouseover="this.style.color='#ffea00';" onmouseout="this.style.color='';">quiter</a>
+                
+                    </div>
+
+                    
+                        
+                </div>
+
+              </section>
+    </main>
+
+  </body>
+</html>

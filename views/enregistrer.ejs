@@ -2,40 +2,76 @@
 <meta charset="utf-8" />
 <html>
   <head>
-    <link href="/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="../css/style.css" type="text/css" rel="stylesheet" />
+
+    <style type="text/css">
+    body {
+      background-image: url(TRON.png);
+      background-color: black;
+      background-repeat: no-repeat;
+      background-size: 1500px;
+      background-position: 100% 70px;
+      /* background-repeat: space; */
+    }
+
+  </style>
+
+
   </head>
   <body>
-     <h1>Inscrivez-Vous</h1>
-    <main>
+     <h1 class="title">Inscrivez-Vous</h1>
+    
     
       <aside id="start_menu">
-                  <div id="error">
-          <% if (locals.error){ %>
-           <p><%= error %></p>
-          <% } %>
-          </div>
-        <form  method="post">
-			
-
-         <input type="text" placeholder="Votre nom" name="nom" id="champs_ecriture" title="Entrez votre nom" required /> <span id="aideNom"></span>
-          
-           <input type="text" placeholder="Votre prenom" name="prenom" id="champs_ecriture" title="Entrez votre prenom" />
-            <input type="text" placeholder="Votre psudo" name="psudo" id="champs_ecriture" title="Entrez votre psudo" >
-         <input type="email" name="email" id="champs_ecriture" placeholder="Entrez votre email" size="60" maxlength="60" />
-         <input type="password" id="champs_ecriture" name="password" size="60" maxlength="60" placeholder="Entrez Votre mot de pass"/>
-         <div id="barre">
-         <div  id= "barre1" ><input type="submit" value="Envoyer" id="btn_start"/></div>
-    <div id="barre2">
-         
-          <input type="reset" value="Annuler" id="btn_start"/>  
-     </div>   </div>
+              <div id="error" class="signinheader">
+                    <% if (locals.error){ %>
+                     <p><%= error %></p>
+                    <% } %>
+              </div>
 
 
-           
-         
-        </form>
-        
+              <form  method="post">
+            
+                       <div class="inputs">
+                            <input type="text" placeholder="Votre nom" name="nom"  required /> <span id="aideNom"></span>
+                        </div>
+
+
+                         <div class="inputs">
+                            <input type="text" placeholder="Votre prenom" name="prenom"  />
+                         </div>
+
+
+                          <div class="inputs">
+                            <input type="text" placeholder="Votre psudo" name="psudo"  >
+                          </div>
+
+                           <div class="inputs">
+                            <input type="email" name="email" placeholder="Entrez votre email" size="60" maxlength="60" />
+                          </div>
+
+                           <div class="inputs">
+                               <input type="password" name="password" size="60" maxlength="60" placeholder="Entrez Votre mot de pass" />
+                          </div>
+                      
+
+                           
+                              <div  class="inputs" >
+                                      <input type="submit" value="Envoyer" class="btn"/>
+                              </div>
+                          
+
+                              <div class="inputs">
+                                      <input type="reset" value="Annuler" class="btn"/>  
+                              </div>   
+
+
+
+                         
+               
+              </form>
+              
       </aside>
-    </main>
+    
   </body>
 </html>
